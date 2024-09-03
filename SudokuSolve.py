@@ -12,8 +12,6 @@ def parse_data(filename, n):
     return retlist
 
 
-#TEST THIS, NEED TO WRITE THIS IN IN THE MAIN CODE FLOW THING
-
 def gridparse(string):
     num = 0
     grid = [[0, 0, 0, 0, 0, 0, 0, 0, 0], 
@@ -71,17 +69,16 @@ def randomBoard():
 #--------------------------------------------------------------
 
 def printBoard(grid):
-  print("------------------------------")
-  for i in range(9):
-    string = ""
-    if i == 3 or i == 6 or i == 9:
-      print("------------------------------")
-    for j in range(9):
-      string += " "+str(grid[i][j]) + " "
-      if j == 2 or j == 5 or j == 8:
-        string += "|"
+    for i in range(9):
+        string = ""
+        if i == 3 or i == 6 or i == 9:
+            print("------------------------------")
+        for j in range(9):
+            string += " "+str(grid[i][j]) + " "
+            if j == 2 or j == 5 or j == 8:
+                string += "|"
     
-    print(string)
+        print(string)
 
 
 def isValid(grid, row, col, num):
@@ -132,50 +129,21 @@ def solve(grid, row, col):
     return False
       
       
-grid = [[8, 0, 1, 9, 0, 0, 0, 4, 0], 
-        [0, 4, 0, 8, 5, 1, 0, 2, 0], 
-        [0, 5, 6, 0, 7, 0, 0, 9, 1], 
-        [0, 3, 0, 0, 0, 5, 0, 7, 0], 
-        [0, 0, 0, 0, 3, 0, 1, 0, 0],
-        [7, 6, 0, 2, 0, 0, 5, 0, 8],
-        [4, 2, 0, 0, 6, 8, 9, 1, 0],
-        [0, 0, 0, 3, 0, 0, 6, 8, 7],
-        [0, 0, 3, 1, 0, 0, 2, 5, 0],]
-      
-grid2 = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
-        [5,  2, 0, 0, 0, 0, 0, 0, 0],
-        [0, 8, 7, 0, 0, 0, 0, 3, 1],
-        [0, 0, 3, 0, 1, 0, 0, 8, 0],
-        [9, 0, 0, 8, 6, 3, 0, 0, 5],
-        [0, 5, 0, 0, 9, 0, 6, 0, 0],
-        [1, 3, 0, 0, 0, 0, 2, 5, 0],
-        [0, 0, 0, 0, 0, 0, 0, 7, 4],
-        [0, 0, 5, 2, 0, 6, 3, 0, 0]]
-      
-grid3 = [[0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        [0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        [0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        [0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        [0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        [0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        [0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 def main():
     print('Sudoku Solver\n')
     
     #sudoku CSV
     filename = "sudoku.csv"
-    sudokus = []
-    sudokus.append(parse_data(filename, 1))
-    sudokus.append(parse_data(filename, 2))
     
+    ind = random.randint(1, 9000000)
+    sudokus = parse_data(filename, ind)
+    empty = gridparse(sudokus[0])
+    printBoard(empty)
+    print("")
     
-    
-    if solve(grid, 0, 0):
-        solve(grid, 0, 0)
-        printBoard(grid)
+    if solve(empty, 0, 0):
+        printBoard(empty)
     else:
         print("No Solution")
 
